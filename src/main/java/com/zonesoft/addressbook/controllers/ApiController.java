@@ -18,7 +18,7 @@ import com.zonesoft.addressbook.entities.Person;
 import com.zonesoft.addressbook.services.PersonDataService;
 
 @RestController
-@RequestMapping("/persons")
+@RequestMapping("/api/persons")
 public class ApiController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ApiController.class);
 	
