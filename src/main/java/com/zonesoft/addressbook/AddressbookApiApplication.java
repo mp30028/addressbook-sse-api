@@ -4,13 +4,17 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.web.reactive.config.CorsRegistry;
+import org.springframework.web.reactive.config.EnableWebFlux;
+import org.springframework.web.reactive.config.WebFluxConfigurer;
+import org.springframework.web.reactive.function.server.RouterFunction;
+import org.springframework.web.reactive.function.server.RouterFunctions;
+import org.springframework.web.reactive.function.server.ServerResponse;
 
 @SpringBootApplication
 @Configuration
-@EnableWebMvc
+@EnableWebFlux
 public class AddressbookApiApplication {
 
 	public static void main(String[] args) {
@@ -18,15 +22,17 @@ public class AddressbookApiApplication {
 	}
 
 	@Bean
-	public WebMvcConfigurer corsConfigurer() {
-		return new WebMvcConfigurer() {
-			@Override
+	public WebFluxConfigurer corsConfigurer() {
+		return new WebFluxConfigurer() {
 			public void addCorsMappings(CorsRegistry registry) {
-//				registry.addMapping("/greeting-javaconfig").allowedOrigins("http://localhost:8080");
-				registry.addMapping("/**");
+				registry.addMapping("/**").allowedOrigins("http://localhost:8080");
 			}
 		};
 	}
-
+	
+	@Bean
+	RouterFunction<ServerResponse> staticResourceRouter(){
+	    return RouterFunctions.resources("/**", new ClassPathResource("static/"));
+	}
 	
 }
