@@ -34,12 +34,12 @@ public class JpaEventForwarder{
         publisher.publishEvent(new PersistenceEvent(source));
     }
     
-    @PostLoad
-    public void afterRead(Person person) {
-        LOGGER.info("[JPA-EVENT] READ completed for PERSON: {} ", person.toString());
-        PersistenceEventData source = new PersistenceEventData(PersistenceEventType.READ, person);
-        publisher.publishEvent(new PersistenceEvent(source));
-    }   
+//    @PostLoad
+//    public void afterRead(Person person) {
+//        LOGGER.info("[JPA-EVENT] READ completed for PERSON: {} ", person.toString());
+//        PersistenceEventData source = new PersistenceEventData(PersistenceEventType.READ, person);
+//        publisher.publishEvent(new PersistenceEvent(source));
+//    }   
     
     @PostUpdate
     public void afterUpdate(Person person) {

@@ -25,7 +25,7 @@ public class AddressbookApiApplication {
 	public WebFluxConfigurer corsConfigurer() {
 		return new WebFluxConfigurer() {
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/**").allowedOrigins("http://localhost:8080");
+				registry.addMapping("/**").allowedOrigins("http://localhost:3000");
 			}
 		};
 	}
