@@ -23,7 +23,7 @@ public class ServerSentEventController {
     }
 
     @GetMapping(path = "/sse/persons", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
-    @CrossOrigin(origins = "http://localhost:3000")
+//    @CrossOrigin(origins = "http://localhost:3000")
     public Flux<String> persons() {
     	LOGGER.debug("[SSE-CONTROLLER] sse/persons");
         return this.events.map(event -> {
